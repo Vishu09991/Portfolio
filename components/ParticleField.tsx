@@ -64,12 +64,28 @@ const ParticleField: React.FC<ParticleFieldProps> = ({
       }
     };
 
-    const resizeCanvas = () => {
-      const rect = container.getBoundingClientRect();
-      canvas.width = rect.width;
-      canvas.height = rect.height;
-      initParticles(rect.width, rect.height);
+    const updateCanvasDimensions = () => {
+      const parent = container.parentElement || container;
+      const rect = parent.getBoundingClientRect();
+      const width = Math.floor(rect.width);
+      const height = Math.floor(rect.height);
+
+      if (width > 0 && height > 0 && (canvas.width !== width || canvas.height !== height)) {
+        canvas.width = width;
+        canvas.height = height;
+        initParticles(width, height);
+      }
     };
+
+    // Initial sizing calculation
+    updateCanvasDimensions();
+
+    // ResizeObserver to track container/parent size changes (e.g. responsive column reflow)
+    const targetToObserve = container.parentElement || container;
+    const resizeObserver = new ResizeObserver(() => {
+      updateCanvasDimensions();
+    });
+    resizeObserver.observe(targetToObserve);
 
     const handleMouseMove = (e: MouseEvent) => {
       const rect = canvas.getBoundingClientRect();
@@ -152,9 +168,8 @@ const ParticleField: React.FC<ParticleFieldProps> = ({
     );
 
     observer.observe(container);
-    resizeCanvas();
 
-    window.addEventListener("resize", resizeCanvas);
+    window.addEventListener("resize", updateCanvasDimensions);
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("mouseleave", handleMouseLeave);
     window.addEventListener("touchmove", handleTouchMove, { passive: true });
@@ -162,8 +177,9 @@ const ParticleField: React.FC<ParticleFieldProps> = ({
     animationFrameId = requestAnimationFrame(animate);
 
     return () => {
+      resizeObserver.disconnect();
       observer.disconnect();
-      window.removeEventListener("resize", resizeCanvas);
+      window.removeEventListener("resize", updateCanvasDimensions);
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseleave", handleMouseLeave);
       window.removeEventListener("touchmove", handleTouchMove);

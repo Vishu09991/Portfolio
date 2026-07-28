@@ -23,6 +23,8 @@ const Projects = () => {
           paddingTop: "4rem",
           paddingBottom: "7rem",
           overflow: "hidden",
+          height: "auto",
+          minHeight: "fit-content",
         }}
       >
         <ParticleField particleCount={80} particleColor="0, 229, 255" />

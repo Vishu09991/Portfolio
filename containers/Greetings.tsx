@@ -50,6 +50,8 @@ const Greetings = () => {
           style={{
             background: "linear-gradient(150deg, #11cdef 0%, #1171ef 100%)",
             overflow: "hidden",
+            height: "auto",
+            minHeight: "fit-content",
           }}
         >
           <ParticleField particleCount={120} particleColor="255, 255, 255" />

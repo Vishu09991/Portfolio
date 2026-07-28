@@ -15,6 +15,8 @@ const Education = () => {
           background: "linear-gradient(135deg, #0B0F19 0%, #111827 100%)",
           paddingBottom: "7rem",
           overflow: "hidden",
+          height: "auto",
+          minHeight: "fit-content",
         }}
       >
         <ParticleField particleCount={80} particleColor="0, 229, 255" />

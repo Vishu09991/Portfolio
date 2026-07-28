@@ -3,6 +3,11 @@ html, body {
   color: #ffffff;
 }
 
+section.section, footer.footer {
+  height: auto !important;
+  min-height: fit-content !important;
+}
+
 body > div:first-child {
   overflow-x: hidden;
   background-color: #080c14 !important;

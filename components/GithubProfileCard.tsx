@@ -11,6 +11,8 @@ const GithubProfileCard = () => {
         backgroundColor: "#080c14",
         borderTop: "none",
         color: "#ffffff",
+        height: "auto",
+        minHeight: "fit-content",
       }}
     >
       <ParticleField particleCount={80} particleColor="0, 229, 255" />
