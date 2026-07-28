@@ -1,0 +1,21 @@
+{
+  "short_name": "Portfolio",
+  "name": "Vishnu Hari Sahal's Portfolio",
+  "description": "Software Development Engineer — Backend, Full-Stack & Payments Systems",
+  "icons": [
+    {
+      "src": "./favicon.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "./favicon.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "./index.html",
+  "display": "standalone",
+  "theme_color": "#11cdef",
+  "background_color": "#11cdef"
+}
