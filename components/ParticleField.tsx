@@ -169,7 +169,7 @@ const ParticleField: React.FC<ParticleFieldProps> = ({
       window.removeEventListener("touchmove", handleTouchMove);
       cancelAnimationFrame(animationFrameId);
     };
-  }, [particleCount]);
+  }, [particleCount, particleColor]);
 
   return (
     <div
