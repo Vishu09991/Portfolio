@@ -1,7 +1,7 @@
 import { Icon } from "@iconify/react";
 import React from "react";
 import Fade from "react-reveal/Fade";
-import { Container, Row, Col } from "reactstrap";
+import { Container } from "reactstrap";
 import { skillsSection } from "../portfolio";
 import ParticleField from "../components/ParticleField";
 import { use3DTilt } from "../hooks/use3DTilt";
@@ -100,28 +100,18 @@ const Skills = () => {
               </div>
             </div>
 
-            {/* ROW 1: Full-width 3 Columns (Languages, Backend, Frontend) */}
-            <Row className="mb-5 align-items-start g-4">
-              <Col lg="4" md="6" className="mb-4 mb-lg-0">
-                {renderCategoryBlock(categories[0])}
-              </Col>
-              <Col lg="4" md="6" className="mb-4 mb-lg-0">
-                {renderCategoryBlock(categories[1])}
-              </Col>
-              <Col lg="4" md="12" className="mb-4 mb-lg-0">
-                {renderCategoryBlock(categories[2])}
-              </Col>
-            </Row>
+            {/* ROW 1: 3 Columns (Languages, Backend, Frontend) — auto-wraps responsively */}
+            <div className="skills-grid skills-grid--row1 mb-5">
+              {renderCategoryBlock(categories[0])}
+              {renderCategoryBlock(categories[1])}
+              {renderCategoryBlock(categories[2])}
+            </div>
 
-            {/* ROW 2: Centered 2-Column Pair (Databases + Cloud & Tools side by side) */}
-            <Row className="justify-content-center mb-4 g-4">
-              <Col lg="5" md="6" className="mb-4 mb-lg-0">
-                {renderCategoryBlock(categories[3], true)}
-              </Col>
-              <Col lg="5" md="6" className="mb-4 mb-lg-0">
-                {renderCategoryBlock(categories[4], true)}
-              </Col>
-            </Row>
+            {/* ROW 2: 2 Columns (Databases + Cloud & Tools) — auto-wraps responsively */}
+            <div className="skills-grid skills-grid--row2 mb-4">
+              {renderCategoryBlock(categories[3], true)}
+              {renderCategoryBlock(categories[4], true)}
+            </div>
           </Container>
         </Fade>
 
