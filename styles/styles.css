@@ -145,7 +145,12 @@ body > div:first-child {
 /* Row 2: 2 columns centered at desktop, stacks at narrow widths */
 .skills-grid--row2 {
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  max-width: 900px;
+  max-width: 1100px;
   margin-left: auto;
   margin-right: auto;
+}
+
+/* Tighter spacing for Cloud & Tools so all 4 tiles fit in one row */
+.cloud-tools-tiles .skill-card {
+  margin: 4px !important;
 }

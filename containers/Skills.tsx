@@ -46,11 +46,11 @@ const SkillTile = ({ skill }: { skill: typeof skillsSection.skillsCategories[0][
   );
 };
 
-const renderCategoryBlock = (category: typeof skillsSection.skillsCategories[0], isCentered = false) => (
+const renderCategoryBlock = (category: typeof skillsSection.skillsCategories[0], isCentered = false, tileClassName = "") => (
   <div className={`mb-4 px-2 ${isCentered ? "text-center" : ""}`}>
     <h3 className="h4 text-info mb-1 font-weight-bold">{category.title}</h3>
     <p className="text-white-50 small mb-3">{category.subTitle}</p>
-    <div className={`d-flex flex-wrap ${isCentered ? "justify-content-center" : ""}`}>
+    <div className={`d-flex flex-wrap ${isCentered ? "justify-content-center" : ""} ${tileClassName}`}>
       {category.skills.map((skill, skillIdx) => (
         <SkillTile key={skillIdx} skill={skill} />
       ))}
@@ -110,7 +110,7 @@ const Skills = () => {
             {/* ROW 2: 2 Columns (Databases + Cloud & Tools) — auto-wraps responsively */}
             <div className="skills-grid skills-grid--row2 mb-4">
               {renderCategoryBlock(categories[3], true)}
-              {renderCategoryBlock(categories[4], true)}
+              {renderCategoryBlock(categories[4], true, "cloud-tools-tiles")}
             </div>
           </Container>
         </Fade>
