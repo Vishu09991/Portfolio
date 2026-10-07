@@ -1,7 +1,6 @@
 import React from "react";
 import { Card, CardBody, Col, Row, Badge } from "reactstrap";
 import { ExperienceType } from "../types/sections";
-import { use3DTilt } from "../hooks/use3DTilt";
 
 interface ExperienceCardProps extends ExperienceType {
   index?: number;
@@ -17,18 +16,15 @@ const ExperienceCard = ({
   tags,
   index = 0,
 }: ExperienceCardProps) => {
-  const companyTiltRef = use3DTilt<HTMLDivElement>({ maxTiltDeg: 8, scale: 1.025 });
-  const detailsTiltRef = use3DTilt<HTMLDivElement>({ maxTiltDeg: 6, scale: 1.015 });
-
   const isEven = index % 2 === 0;
 
   return (
     <Row className={`align-items-stretch mb-5 g-4 ${!isEven ? "flex-lg-row-reverse" : ""}`}>
       {/* PANEL A: Company Card (Compact) */}
       <Col lg="4" className="d-flex mb-4 mb-lg-0">
-        <div ref={companyTiltRef} className="w-100 h-100">
-          <Card className="experience-card-glow shadow-lg border-0 w-100 h-100">
-            <CardBody className="d-flex flex-column align-items-center justify-content-center text-center p-4 p-md-5">
+        <div className="w-100 h-100">
+          <Card className="portfolio-card w-100 h-100">
+            <CardBody className="d-flex flex-column align-items-center justify-content-center text-center card-content">
               <div
                 className="d-flex align-items-center justify-content-center mb-3 flex-shrink-0"
                 style={{
@@ -54,12 +50,12 @@ const ExperienceCard = ({
                     }}
                   />
                 ) : (
-                  <i className="ni ni-briefcase-24" style={{ color: "#00e5ff", fontSize: "2.2rem" }} />
+                  <i className="ni ni-briefcase-24" style={{ color: "var(--accent)", fontSize: "2.2rem" }} />
                 )}
               </div>
 
               <h5 className="font-weight-bold mb-2 text-white" style={{ fontSize: "1.3rem", lineHeight: "1.3" }}>
-                <span style={{ color: "#00e5ff" }}>{company}</span>
+                <span style={{ color: "var(--accent)" }}>{company}</span>
               </h5>
 
               <p className="mb-0 text-muted" style={{ fontSize: "0.92rem", lineHeight: "1.4" }}>
@@ -72,19 +68,19 @@ const ExperienceCard = ({
 
       {/* PANEL B: Details Card (Main Content) */}
       <Col lg="8" className="d-flex mb-4 mb-lg-0">
-        <div ref={detailsTiltRef} className="w-100 h-100">
-          <Card className="experience-card-glow shadow-lg border-0 w-100 h-100">
-            <CardBody className="d-flex flex-column justify-content-between p-4 p-md-5">
+        <div className="w-100 h-100">
+          <Card className="portfolio-card w-100 h-100">
+            <CardBody className="d-flex flex-column justify-content-between card-content">
               <div>
                 <div className="d-flex flex-wrap align-items-center justify-content-between mb-2">
                   <span
                     className="font-weight-bold text-uppercase"
-                    style={{ color: "#00e5ff", fontSize: "0.8rem", letterSpacing: "1px" }}
+                    style={{ color: "var(--accent)", fontSize: "0.8rem", letterSpacing: "1px" }}
                   >
                     {company}
                   </span>
-                  <span style={{ fontSize: "0.92rem", color: "#9ca3af", fontWeight: 500 }}>
-                    <i className="fa fa-calendar mr-2" style={{ color: "#00e5ff" }} />
+                  <span style={{ fontSize: "0.92rem", color: "var(--text-muted)", fontWeight: 500 }}>
+                    <i className="fa fa-calendar mr-2" style={{ color: "var(--accent)" }} />
                     {date}
                   </span>
                 </div>
@@ -103,7 +99,7 @@ const ExperienceCard = ({
                   <div className="mb-4">
                     <h6
                       className="font-weight-bold text-uppercase mb-2.5"
-                      style={{ color: "#00e5ff", fontSize: "0.82rem", letterSpacing: "0.8px" }}
+                      style={{ color: "var(--accent)", fontSize: "0.82rem", letterSpacing: "0.8px" }}
                     >
                       Key Achievements
                     </h6>
@@ -122,7 +118,7 @@ const ExperienceCard = ({
                 <div className="pt-3" style={{ borderTop: "1px solid rgba(255, 255, 255, 0.08)" }}>
                   <h6
                     className="font-weight-bold text-uppercase mb-2.5"
-                    style={{ color: "#00e5ff", fontSize: "0.82rem", letterSpacing: "0.8px" }}
+                    style={{ color: "var(--accent)", fontSize: "0.82rem", letterSpacing: "0.8px" }}
                   >
                     Technologies & Tools
                   </h6>
@@ -149,6 +145,3 @@ const ExperienceCard = ({
 };
 
 export default ExperienceCard;
-
-
-

@@ -1,7 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { greetings, socialLinks } from "../portfolio";
 import Headroom from "headroom.js";
-import { UncontrolledCollapse, NavbarBrand, Navbar, NavItem, NavLink, Nav, Container, Row, Col, Button } from "reactstrap";
+import {
+  UncontrolledCollapse,
+  NavbarBrand,
+  Navbar,
+  NavItem,
+  NavLink,
+  Nav,
+  Container,
+  Row,
+  Col,
+  Button,
+} from "reactstrap";
 
 const Navigation = () => {
   const [collapseClasses, setCollapseClasses] = useState("");
@@ -13,7 +24,8 @@ const Navigation = () => {
     let headroom = new Headroom(document.getElementById("navbar-main")!);
     // initialise
     headroom.init();
-  });
+    return () => headroom.destroy();
+  }, []);
 
   return (
     <>
@@ -43,7 +55,7 @@ const Navigation = () => {
               <span className="navbar-toggler-icon" />
             </button>
             <UncontrolledCollapse
-              toggler="#navbar_global"
+              toggler="#navbar_global, #navbar_close"
               navbar
               className={collapseClasses}
               onExiting={onExiting}
@@ -52,12 +64,10 @@ const Navigation = () => {
               <div className="navbar-collapse-header">
                 <Row>
                   <Col className="collapse-brand" xs="6">
-                    <h3 className="text-black" id="nav-title">
-                      {greetings.name}
-                    </h3>
+                    <h3 className="text-black">{greetings.name}</h3>
                   </Col>
                   <Col className="collapse-close" xs="6">
-                    <button className="navbar-toggler" id="navbar_global">
+                    <button className="navbar-toggler" aria-label="Close navigation" id="navbar_close">
                       <span />
                       <span />
                     </button>
@@ -154,7 +164,7 @@ const Navigation = () => {
                         background: "rgba(11, 15, 25, 0.75)",
                         border: "1.5px solid rgba(0, 229, 255, 0.6)",
                         borderRadius: "50rem",
-                        color: "#00e5ff",
+                        color: "var(--accent)",
                         fontSize: "0.85rem",
                         fontWeight: 700,
                         letterSpacing: "0.8px",
@@ -168,8 +178,8 @@ const Navigation = () => {
                       rel="noopener noreferrer"
                       aria-label="Download Resume"
                     >
-                      <i className="fa fa-download mr-1.5" style={{ color: "#00e5ff", fontSize: "0.92rem" }} />
-                      <span style={{ color: "#00e5ff" }}>RESUME</span>
+                      <i className="fa fa-download mr-1.5" style={{ color: "var(--accent)", fontSize: "0.92rem" }} />
+                      <span style={{ color: "var(--accent)" }}>RESUME</span>
                     </Button>
                   </NavItem>
                 )}

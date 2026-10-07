@@ -1,18 +1,15 @@
 import React from "react";
 import { Card, CardBody, Badge } from "reactstrap";
 import { EducationType } from "../types/sections";
-import { use3DTilt } from "../hooks/use3DTilt";
 
 const EducationCard = ({ schoolName, subHeader, duration, desc, grade, descBullets }: EducationType) => {
-  const cardRef = use3DTilt<HTMLDivElement>();
-
   return (
-    <div ref={cardRef} className="w-100 h-100">
-      <Card className="education-card-glow shadow-lg w-100 border-0 h-100">
-        <CardBody className="d-flex flex-column justify-content-between p-4 p-md-5">
+    <div className="w-100 h-100">
+      <Card className="portfolio-card w-100 h-100">
+        <CardBody className="d-flex flex-column justify-content-between card-content">
           <div>
             <h5 className="font-weight-bold mb-2 text-white" style={{ fontSize: "1.35rem", lineHeight: "1.35" }}>
-              <span style={{ color: "#00e5ff" }}>{schoolName}</span>
+              <span style={{ color: "var(--accent)" }}>{schoolName}</span>
             </h5>
             <h6 className="font-weight-semibold mb-3 text-white" style={{ fontSize: "1.05rem", opacity: 0.95 }}>
               {subHeader}
@@ -36,8 +33,11 @@ const EducationCard = ({ schoolName, subHeader, duration, desc, grade, descBulle
               )}
             </div>
             {desc && (
-              <p className="description mb-3" style={{ fontSize: "0.96rem", color: "#9ca3af", lineHeight: "1.5" }}>
-                <i className="fa fa-map-marker mr-1.5" style={{ color: "#00e5ff" }} /> {desc}
+              <p
+                className="description mb-3"
+                style={{ fontSize: "0.96rem", color: "var(--text-muted)", lineHeight: "1.5" }}
+              >
+                <i className="fa fa-map-marker mr-1.5" style={{ color: "var(--accent)" }} /> {desc}
               </p>
             )}
             {descBullets && descBullets.length > 0 && (
@@ -56,6 +56,4 @@ const EducationCard = ({ schoolName, subHeader, duration, desc, grade, descBulle
   );
 };
 
-
 export default EducationCard;
-

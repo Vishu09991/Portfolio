@@ -11,8 +11,7 @@ const EndOfPageCTA: React.FC = () => {
       const isDismissed = sessionStorage.getItem("cta_dismissed") === "true";
       if (isDismissed) return;
 
-      const isNearBottom =
-        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 250;
+      const isNearBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 250;
 
       if (isNearBottom) {
         setVisible(true);
@@ -32,7 +31,10 @@ const EndOfPageCTA: React.FC = () => {
   };
 
   const handleBackToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({
+      top: 0,
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+    });
     setVisible(false);
     sessionStorage.setItem("cta_dismissed", "true");
   };
@@ -56,7 +58,7 @@ const EndOfPageCTA: React.FC = () => {
       onClick={handleClose}
     >
       <div
-        className="position-relative text-center p-4 p-sm-5"
+        className="contact-dialog position-relative text-center p-4 p-sm-5"
         style={{
           maxWidth: "520px",
           width: "100%",
@@ -67,7 +69,7 @@ const EndOfPageCTA: React.FC = () => {
           transform: "translateY(-20px)",
           animation: "scaleIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)",
         }}
-        onClick={(e) => e.stopPropagation()}
+        onClick={e => e.stopPropagation()}
       >
         <button
           onClick={handleClose}
@@ -107,11 +109,15 @@ const EndOfPageCTA: React.FC = () => {
           👋
         </div>
 
-        <h3 className="text-info font-weight-bold mb-2" style={{ fontSize: "1.65rem", fontFamily: "monospace, sans-serif" }}>
+        <h3
+          className="text-info font-weight-bold mb-2"
+          style={{ fontSize: "1.65rem", fontFamily: "monospace, sans-serif" }}
+        >
           Let&apos;s Connect!
         </h3>
         <p className="text-white-50 mb-4 px-2" style={{ fontSize: "1.02rem", lineHeight: "1.6" }}>
-          Interested in discussing a software engineering role, collaboration, or building a high-impact product together?
+          Interested in discussing a software engineering role, collaboration, or building a high-impact product
+          together?
         </p>
 
         <div className="d-flex flex-column flex-sm-row align-items-center justify-content-center gap-3">

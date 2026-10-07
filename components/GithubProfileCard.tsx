@@ -1,7 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from "reactstrap";
 import { socialLinks } from "../portfolio";
-import ParticleField from "./ParticleField";
 
 const GithubProfileCard = () => {
   return (
@@ -15,9 +14,7 @@ const GithubProfileCard = () => {
         minHeight: "fit-content",
       }}
     >
-      <ParticleField particleCount={80} particleColor="0, 229, 255" />
       <Container className="position-relative" style={{ zIndex: 2 }}>
-
         <Row className="py-4">
           {/* Column 1 — NAVIGATION */}
           <Col lg="3" md="6" className="mb-4 mb-lg-0">
@@ -98,7 +95,7 @@ const GithubProfileCard = () => {
               )}
               <li className="d-flex align-items-center mb-2">
                 <i className="fa fa-envelope text-info mr-3" style={{ fontSize: "1rem", width: "18px" }} />
-                <a href="mailto:sahalvishnuhari237@gmail.com" className="text-white-50 footer-link text-truncate">
+                <a href="mailto:sahalvishnuhari237@gmail.com" className="text-white-50 footer-link">
                   sahalvishnuhari237@gmail.com
                 </a>
               </li>
@@ -108,7 +105,7 @@ const GithubProfileCard = () => {
           {/* Column 3 — TERMINAL-STYLE INFO CARD */}
           <Col lg="5" md="12" className="mb-4 mb-lg-0">
             <div
-              className="p-3"
+              className="p-3 footer-info"
               style={{
                 background: "linear-gradient(145deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%)",
                 border: "1px solid rgba(17, 205, 239, 0.4)",
@@ -117,10 +114,39 @@ const GithubProfileCard = () => {
                 fontFamily: "monospace, sans-serif",
               }}
             >
-              <div className="d-flex align-items-center mb-2 pb-2" style={{ borderBottom: "1px solid rgba(255, 255, 255, 0.08)" }}>
-                <span className="mr-2" style={{ height: "10px", width: "10px", backgroundColor: "#ff5f56", borderRadius: "50%", display: "inline-block" }} />
-                <span className="mr-2" style={{ height: "10px", width: "10px", backgroundColor: "#ffbd2e", borderRadius: "50%", display: "inline-block" }} />
-                <span style={{ height: "10px", width: "10px", backgroundColor: "#27c93f", borderRadius: "50%", display: "inline-block" }} />
+              <div
+                className="d-flex align-items-center mb-2 pb-2"
+                style={{ borderBottom: "1px solid rgba(255, 255, 255, 0.08)" }}
+              >
+                <span
+                  className="mr-2"
+                  style={{
+                    height: "10px",
+                    width: "10px",
+                    backgroundColor: "#ff5f56",
+                    borderRadius: "50%",
+                    display: "inline-block",
+                  }}
+                />
+                <span
+                  className="mr-2"
+                  style={{
+                    height: "10px",
+                    width: "10px",
+                    backgroundColor: "#ffbd2e",
+                    borderRadius: "50%",
+                    display: "inline-block",
+                  }}
+                />
+                <span
+                  style={{
+                    height: "10px",
+                    width: "10px",
+                    backgroundColor: "#27c93f",
+                    borderRadius: "50%",
+                    display: "inline-block",
+                  }}
+                />
               </div>
               <div className="text-info font-weight-bold mb-1" style={{ fontSize: "0.88rem" }}>
                 &gt; about

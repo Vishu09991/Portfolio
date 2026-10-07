@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, CardBody, Col, Button, Badge } from "reactstrap";
 import { ProjectType } from "../types/sections";
-import { use3DTilt } from "../hooks/use3DTilt";
+import ProjectArtwork from "./ProjectArtwork";
 
 const getDomainIcon = (name: string) => {
   const lower = name.toLowerCase();
@@ -19,14 +19,14 @@ const getDomainIcon = (name: string) => {
 
 const ProjectsCard = ({ name, desc, tags, descBullets, github, link }: ProjectType) => {
   const iconClass = getDomainIcon(name);
-  const cardRef = use3DTilt<HTMLDivElement>();
-  const targetLink = (link && !link.includes("#")) ? link : (github && !github.includes("#")) ? github : "#";
+  const targetLink = link && !link.includes("#") ? link : github && !github.includes("#") ? github : "#";
 
   return (
     <Col xl="4" lg="6" md="6" className="d-flex mb-4">
-      <div ref={cardRef} className="w-100 h-100 d-flex flex-column">
-        <Card className="project-card-glow shadow-lg border-0 w-100 h-100 d-flex flex-column">
-          <CardBody className="d-flex flex-column justify-content-between p-4 p-md-5 h-100">
+      <div className="w-100 h-100 d-flex flex-column">
+        <Card className="portfolio-card w-100 h-100 d-flex flex-column">
+          <ProjectArtwork icon={iconClass} />
+          <CardBody className="d-flex flex-column justify-content-between card-content h-100">
             <div className="d-flex flex-column flex-grow-1 mb-4">
               <div className="d-flex align-items-center mb-4">
                 <div
@@ -41,7 +41,7 @@ const ProjectsCard = ({ name, desc, tags, descBullets, github, link }: ProjectTy
                     justifyContent: "center",
                   }}
                 >
-                  <i className={`${iconClass}`} style={{ color: "#00e5ff", fontSize: "1.25rem" }} />
+                  <i className={`${iconClass}`} style={{ color: "var(--accent)", fontSize: "1.25rem" }} />
                 </div>
                 <h5 className="font-weight-bold mb-0 text-white" style={{ fontSize: "1.3rem", lineHeight: "1.35" }}>
                   {name}
@@ -63,7 +63,14 @@ const ProjectsCard = ({ name, desc, tags, descBullets, github, link }: ProjectTy
                 </div>
               )}
 
-              {desc ? <p className="description mb-3" style={{ fontSize: "0.98rem", color: "#9ca3af", lineHeight: "1.5" }}>{desc}</p> : null}
+              {desc ? (
+                <p
+                  className="description mb-3"
+                  style={{ fontSize: "0.98rem", color: "var(--text-muted)", lineHeight: "1.5" }}
+                >
+                  {desc}
+                </p>
+              ) : null}
 
               {descBullets && descBullets.length > 0 && (
                 <ul className="pl-3 mb-0" style={{ fontSize: "0.98rem", color: "#cbd5e1", lineHeight: "1.65" }}>
@@ -76,7 +83,10 @@ const ProjectsCard = ({ name, desc, tags, descBullets, github, link }: ProjectTy
               )}
             </div>
 
-            <div className="d-flex justify-content-center pt-3.5 mt-auto" style={{ borderTop: "1px solid rgba(255, 255, 255, 0.1)" }}>
+            <div
+              className="d-flex justify-content-center pt-3.5 mt-auto"
+              style={{ borderTop: "1px solid rgba(255, 255, 255, 0.1)" }}
+            >
               <Button
                 className="btn-icon project-btn-glow px-4 py-2 d-inline-flex align-items-center"
                 href={targetLink}
@@ -85,7 +95,10 @@ const ProjectsCard = ({ name, desc, tags, descBullets, github, link }: ProjectTy
                 aria-label={`View ${name} Project`}
               >
                 <span className="btn-inner--icon mr-2">
-                  <i className={targetLink.includes("github.com") ? "fa fa-github" : "fa fa-external-link"} style={{ fontSize: "1.1rem" }} />
+                  <i
+                    className={targetLink.includes("github.com") ? "fa fa-github" : "fa fa-external-link"}
+                    style={{ fontSize: "1.1rem" }}
+                  />
                 </span>
                 <span>VIEW PROJECT</span>
               </Button>
@@ -98,6 +111,3 @@ const ProjectsCard = ({ name, desc, tags, descBullets, github, link }: ProjectTy
 };
 
 export default ProjectsCard;
-
-
-

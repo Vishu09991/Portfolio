@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from "react";
 
+import { useReducedMotion } from "../hooks/useReducedMotion";
+
 type Props = {
   animationPath: string;
 };
 
 const GreetingLottie = ({ animationPath }: Props) => {
+  const reducedMotion = useReducedMotion();
   const [Lottie, setLottie] = useState<any>(null);
 
   useEffect(() => {
-    import("react-lottie").then((mod) => {
+    import("react-lottie").then(mod => {
       setLottie(() => mod.default);
     });
   }, []);
 
   const defaultOptions = {
-    loop: true,
-    autoplay: true,
+    loop: false,
+    autoplay: !reducedMotion,
     path: animationPath,
   };
 
@@ -26,7 +29,7 @@ const GreetingLottie = ({ animationPath }: Props) => {
   return (
     <div onClick={() => null}>
       {/* @ts-ignore */}
-      <Lottie options={defaultOptions} />
+      <Lottie options={defaultOptions} isPaused={reducedMotion} isClickToPauseDisabled={reducedMotion} />
     </div>
   );
 };
