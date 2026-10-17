@@ -12,10 +12,11 @@ const EndOfPageCTA = dynamic(() => import("../components/EndOfPageCTA"));
 import { openSource } from "../portfolio";
 import SEO from "../components/SEO";
 import { GithubUserType } from "../types";
+import CinematicIntro from "../components/intro/CinematicIntro";
 
 export default function Home({ githubProfileData }: { githubProfileData: any }) {
   return (
-    <div>
+    <CinematicIntro>
       <SEO />
       <Navigation />
       <main>
@@ -29,7 +30,7 @@ export default function Home({ githubProfileData }: { githubProfileData: any }) 
       <GithubProfileCard {...githubProfileData} />
       <FloatingNav />
       <EndOfPageCTA />
-    </div>
+    </CinematicIntro>
   );
 }
 

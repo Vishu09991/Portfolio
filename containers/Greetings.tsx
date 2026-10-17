@@ -3,6 +3,7 @@ import { greetings } from "../portfolio";
 import { Button, Container, Row, Col } from "reactstrap";
 import HeroScene from "../components/HeroScene";
 import SocialLinks from "../components/SocialLinks";
+import { IntroReplayButton } from "../components/intro/CinematicIntro";
 
 const Greetings = () => {
   return (
@@ -11,8 +12,12 @@ const Greetings = () => {
         <div className="col px-0">
           <Row className="align-items-center gy-5">
             <Col lg="6">
-              <h1 className="display-3 text-white">{greetings.title + " "}</h1>
-              <p className="lead text-white">{greetings.description}</p>
+              <h1 className="display-3 text-white" data-intro-heading="" data-intro-reveal="" tabIndex={-1}>
+                {greetings.title + " "}
+              </h1>
+              <p className="lead text-white" data-intro-reveal="">
+                {greetings.description}
+              </p>
               {greetings.techStack && (
                 <div className="d-flex flex-wrap my-3">
                   {greetings.techStack.map((tech, index) => (
@@ -34,9 +39,11 @@ const Greetings = () => {
                   ))}
                 </div>
               )}
-              <SocialLinks />
+              <div data-intro-reveal="">
+                <SocialLinks />
+              </div>
               {greetings.resumeLink && (
-                <div className="btn-wrapper my-4">
+                <div className="btn-wrapper my-4" data-intro-reveal="">
                   <Button className="btn-white btn-icon mb-3 mb-sm-0 ml-1" color="default" href={greetings.resumeLink}>
                     <span className="btn-inner--icon mr-1">
                       <i className="fa fa-file" />
@@ -45,6 +52,9 @@ const Greetings = () => {
                   </Button>
                 </div>
               )}
+              <div data-intro-reveal="">
+                <IntroReplayButton />
+              </div>
             </Col>
             <Col lg="6" className="hero-art">
               <HeroScene />
