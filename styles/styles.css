@@ -16,6 +16,13 @@
 html {
   scroll-padding-top: 100px;
 }
+/* Hide the OS cursor only after the decorative cursor has acquired a mouse position. */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) and (forced-colors: none) {
+  html[data-spatial-cursor],
+  html[data-spatial-cursor] * {
+    cursor: none !important;
+  }
+}
 body {
   background: var(--page);
   color: var(--text);
@@ -138,6 +145,14 @@ button:focus-visible {
   font-size: 1.08rem;
   line-height: 1.85;
   max-width: 56ch;
+}
+.hero-section .hero-role {
+  margin: 0 0 18px;
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 .hero-art {
   padding-left: 32px;

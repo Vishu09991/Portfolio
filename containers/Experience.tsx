@@ -7,7 +7,12 @@ import ExperienceCard from "../components/ExperienceCard";
 const Experience = () => {
   return (
     experience && (
-      <PortfolioSection id="experience" title="Experience" icon="ni ni-briefcase-24">
+      <PortfolioSection
+        id="experience"
+        title="Experience"
+        subtitle="Hands-on work across web development, cloud infrastructure, and a Java / Spring Boot job simulation."
+        icon="ni ni-briefcase-24"
+      >
         {/* Alternating Left-Right Two-Panel Rows */}
         {experience.map((data, index) => (
           <ExperienceCard key={data.company} {...data} index={index} />

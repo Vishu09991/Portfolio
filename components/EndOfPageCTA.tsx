@@ -1,14 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "reactstrap";
+import { profile } from "../portfolio";
+import { useIntroActive } from "./intro/CinematicIntro";
 
 const EndOfPageCTA: React.FC = () => {
   const [visible, setVisible] = useState(false);
+  const introActive = useIntroActive();
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    // Fixing the body for the intro temporarily collapses document scroll height.
+    // Do not mistake that for the visitor reaching the end of the portfolio.
+    if (introActive) return;
 
     const handleScroll = () => {
-      const isDismissed = sessionStorage.getItem("cta_dismissed") === "true";
+      let isDismissed = false;
+      try {
+        isDismissed = sessionStorage.getItem("cta_dismissed") === "true";
+      } catch {
+        /* Storage is optional. */
+      }
       if (isDismissed) return;
 
       const isNearBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 250;
@@ -23,11 +33,15 @@ const EndOfPageCTA: React.FC = () => {
     handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [introActive]);
 
   const handleClose = () => {
     setVisible(false);
-    sessionStorage.setItem("cta_dismissed", "true");
+    try {
+      sessionStorage.setItem("cta_dismissed", "true");
+    } catch {
+      /* Storage is optional. */
+    }
   };
 
   const handleBackToTop = () => {
@@ -36,10 +50,14 @@ const EndOfPageCTA: React.FC = () => {
       behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
     });
     setVisible(false);
-    sessionStorage.setItem("cta_dismissed", "true");
+    try {
+      sessionStorage.setItem("cta_dismissed", "true");
+    } catch {
+      /* Storage is optional. */
+    }
   };
 
-  if (!visible) return null;
+  if (!visible || introActive) return null;
 
   return (
     <div
@@ -116,8 +134,7 @@ const EndOfPageCTA: React.FC = () => {
           Let&apos;s Connect!
         </h3>
         <p className="text-white-50 mb-4 px-2" style={{ fontSize: "1.02rem", lineHeight: "1.6" }}>
-          Interested in discussing a software engineering role, collaboration, or building a high-impact product
-          together?
+          {profile.contactPrompt}
         </p>
 
         <div className="d-flex flex-column flex-sm-row align-items-center justify-content-center gap-3">

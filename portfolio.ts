@@ -11,11 +11,19 @@ import {
   GreetingsType,
 } from "./types/sections";
 
+export const profile = {
+  role: "Java Full Stack Engineer",
+  footerSummary: "Java Full Stack Engineer | CS Student | Spring Boot · React · SQL",
+  contactPrompt:
+    "Have a Java full-stack opportunity or a product to build? Let's talk about backend services, web applications, and how I can contribute to your team.",
+};
+
 export const greetings: GreetingsType = {
   name: "Vishnu Hari Sahal",
-  title: "Hi all, I'm Vishnu Hari Sahal",
+  title: "Hi, I'm Vishnu Hari Sahal",
   description:
-    "I'm a full stack developer who enjoys taking a product from a rough idea to a working, deployable application. I focus on writing clean, well-structured code and thinking about scalability early — so what I build today doesn't fall apart when it needs to grow tomorrow.",
+    "I build full-stack applications with Java, Spring Boot, React, and SQL. My work spans REST APIs, database-backed services, and responsive interfaces, with hands-on experience in Kafka-based transaction processing and payment workflows. I focus on clean object-oriented design, reliable data flow, and software that's easy to maintain.",
+  techStack: ["Java", "Spring Boot", "React", "SQL", "REST APIs", "Apache Kafka"],
   resumeLink: "https://drive.google.com/file/d/1Ha0RoeBiJL1r9DeQ1fGqV_83x7WuBs5t/view?usp=sharing",
 };
 
@@ -34,11 +42,12 @@ export const socialLinks: SocialLinksType = {
 
 export const skillsSection = {
   title: "Skills",
-  subTitle: "Technical proficiencies and tools used in production software engineering",
+  subTitle:
+    "Java and Spring Boot at the core, supported by React, SQL, and the tools to build complete web applications.",
   skillsCategories: [
     {
       title: "Languages",
-      subTitle: "Core programming languages",
+      subTitle: "Java, object-oriented programming, and supporting languages",
       skills: [
         { skillName: "Java", iconifyTag: "logos:java", brandColor: "#f89820" },
         { skillName: "Python", iconifyTag: "logos:python", brandColor: "#3776ab" },
@@ -49,7 +58,7 @@ export const skillsSection = {
     },
     {
       title: "Backend & Frameworks",
-      subTitle: "Backend frameworks & distributed systems",
+      subTitle: "Spring Boot services, REST APIs, and event-driven processing",
       skills: [
         { skillName: "Spring Boot", iconifyTag: "logos:spring-icon", brandColor: "#6db33f" },
         { skillName: "Apache Kafka", iconifyTag: "logos:kafka-icon", brandColor: "#00b4d8" },
@@ -60,7 +69,7 @@ export const skillsSection = {
     },
     {
       title: "Frontend",
-      subTitle: "Frontend web technologies",
+      subTitle: "Responsive interfaces with React and web fundamentals",
       skills: [
         { skillName: "React.js", iconifyTag: "vscode-icons:file-type-reactjs", brandColor: "#61dafb" },
         { skillName: "HTML5", iconifyTag: "vscode-icons:file-type-html", brandColor: "#e34f26" },
@@ -70,7 +79,7 @@ export const skillsSection = {
     },
     {
       title: "Databases",
-      subTitle: "Relational & NoSQL databases",
+      subTitle: "SQL data modeling, persistence, and NoSQL storage",
       skills: [
         { skillName: "MySQL", iconifyTag: "logos:mysql", brandColor: "#00758f" },
         { skillName: "MongoDB", iconifyTag: "skill-icons:mongodb", brandColor: "#47a248" },
@@ -126,9 +135,7 @@ export const educationInfo: EducationType[] = [
     duration: "Apr 2021 – Mar 2023",
     desc: "Location: Haryana, India",
     grade: "Score: 94%",
-    descBullets: [
-      "Completed Senior Secondary Education with distinction in Physics, Chemistry, and Mathematics.",
-    ],
+    descBullets: ["Completed Senior Secondary Education with distinction in Physics, Chemistry, and Mathematics."],
   },
 ];
 
@@ -174,8 +181,6 @@ export const experience: ExperienceType[] = [
     tags: ["Java", "Spring Boot", "Apache Kafka", "Spring Data JPA", "H2 SQL", "REST APIs"],
   },
 ];
-
-
 
 export const projects: ProjectType[] = [
   {
@@ -225,18 +230,24 @@ export const feedbacks: FeedbackType[] = [
 
 // See object prototype on /types/section.ts page
 export const seoData: SEODataType = {
-  title: "Vishnu Hari Sahal | Software Development Engineer",
-  description: greetings.description,
+  title: `Vishnu Hari Sahal | ${profile.role}`,
+  description:
+    "Vishnu Hari Sahal, Java Full Stack Engineer. Explore projects and experience in Java, Spring Boot, React, SQL, REST APIs, and Apache Kafka.",
   author: "Vishnu Hari Sahal",
   image: "https://avatars.githubusercontent.com/u/Vishu09991",
   url: "https://vishnuharisahal.com", // [DRAFT - please confirm]
   keywords: [
     "Vishnu Hari Sahal",
     "Vishnu Hari Sahal Portfolio",
-    "Software Development Engineer",
+    "Java Full Stack Engineer",
+    "Java Full Stack Developer",
     "Backend Engineer",
     "Full Stack Developer",
     "Spring Boot",
+    "React",
+    "SQL",
+    "REST APIs",
+    "Spring Data JPA",
     "Next.js",
     "Java",
     "Python",
@@ -244,4 +255,3 @@ export const seoData: SEODataType = {
     "Payments Systems",
   ],
 };
-

@@ -1,5 +1,5 @@
 import React from "react";
-import { greetings } from "../portfolio";
+import { greetings, profile } from "../portfolio";
 import { Button, Container, Row, Col } from "reactstrap";
 import HeroScene from "../components/HeroScene";
 import SocialLinks from "../components/SocialLinks";
@@ -12,6 +12,9 @@ const Greetings = () => {
         <div className="col px-0">
           <Row className="align-items-center gy-5">
             <Col lg="6">
+              <p className="hero-role" data-intro-reveal="">
+                {profile.role}
+              </p>
               <h1 className="display-3 text-white" data-intro-heading="" data-intro-reveal="" tabIndex={-1}>
                 {greetings.title + " "}
               </h1>
@@ -19,7 +22,7 @@ const Greetings = () => {
                 {greetings.description}
               </p>
               {greetings.techStack && (
-                <div className="d-flex flex-wrap my-3">
+                <div className="d-flex flex-wrap my-3" data-intro-reveal="" aria-label="Core technologies">
                   {greetings.techStack.map((tech, index) => (
                     <span
                       key={index}

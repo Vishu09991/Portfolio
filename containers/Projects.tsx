@@ -7,7 +7,12 @@ import ProjectsCard from "../components/ProjectsCard";
 const Projects = () => {
   return (
     projects && (
-      <PortfolioSection id="projects" title="Projects" icon="fa fa-folder-open">
+      <PortfolioSection
+        id="projects"
+        title="Projects"
+        subtitle="Java application development, full-stack web products, and data-driven services."
+        icon="fa fa-folder-open"
+      >
         <Row className="g-4 g-lg-5 align-items-stretch">
           {projects.map((data, i) => {
             return <ProjectsCard key={i} {...data} />;

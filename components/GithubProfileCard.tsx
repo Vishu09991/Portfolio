@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from "reactstrap";
-import { socialLinks } from "../portfolio";
+import { profile, socialLinks } from "../portfolio";
 
 const GithubProfileCard = () => {
   return (
@@ -152,7 +152,7 @@ const GithubProfileCard = () => {
                 &gt; about
               </div>
               <p className="text-white-50 mb-0" style={{ fontSize: "0.85rem", lineHeight: "1.6" }}>
-                Full-Stack Dev | CS Student | Building scalable systems
+                {profile.footerSummary}
               </p>
             </div>
           </Col>

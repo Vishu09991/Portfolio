@@ -121,21 +121,26 @@
   letter-spacing: 0.1em;
   color: #5e7d94;
 }
-.wallNumber {
+.wallStory {
   position: absolute;
   left: 7vw;
-  top: 27%;
-  color: #112132;
-  font-size: clamp(140px, 23vw, 330px);
-  line-height: 0.95;
-  font-weight: 600;
-  letter-spacing: -0.08em;
-  text-shadow: 1px 1px 0 #b6dbff18, -1px -1px 0 #0009;
+  top: 30%;
+  width: 38vw;
 }
-.wallNumber span {
+.wallStory p {
+  margin: 0;
+  color: #b8e6fa;
+  font-size: clamp(34px, 5.2vw, 88px);
+  line-height: 1.08;
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  white-space: pre-line;
+  text-shadow: 0 0 48px #329bdb18;
+}
+.wallStory > span {
   display: block;
   margin-top: 30px;
-  margin-left: 9px;
+  margin-left: 2px;
   font-size: 9px;
   letter-spacing: 0.22em;
   color: #668499;
@@ -216,24 +221,6 @@
     transform: translate3d(8px, -18px, 0);
     opacity: 0.55;
   }
-}
-.caption {
-  position: absolute;
-  left: 9%;
-  bottom: 12%;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 10px;
-  color: #8fa9bc;
-  letter-spacing: 0.07em;
-}
-.statusDot {
-  width: 4px;
-  height: 4px;
-  background: #82d8ff;
-  border-radius: 50%;
-  box-shadow: 0 0 9px #1d9fff;
 }
 .skip {
   position: absolute;
@@ -337,12 +324,17 @@
     font-size: 6px;
     line-height: 1.8;
   }
-  .wallNumber {
+  .wallStory {
     top: 32%;
-    left: 28px;
-    font-size: 36vw;
+    left: 24px;
+    width: calc(43vw - 40px);
   }
-  .wallNumber span {
+  .wallStory p {
+    font-size: clamp(18px, 4.8vw, 28px);
+    letter-spacing: -0.045em;
+    line-height: 1.15;
+  }
+  .wallStory > span {
     max-width: 110px;
     margin-left: 4px;
     font-size: 6px;
@@ -353,11 +345,6 @@
   }
   .wallRail {
     left: 8px;
-  }
-  .caption {
-    left: 8%;
-    bottom: 18%;
-    font-size: 8px;
   }
   .skip {
     right: 24px;
@@ -387,9 +374,6 @@
   }
   .copy p {
     font-size: 44px;
-  }
-  .caption {
-    bottom: 7%;
   }
 }
 @media (prefers-reduced-motion: reduce) {

@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 
-export const useAutoScroll = (speedPxPerSec = 22) => {
+export const useAutoScroll = (speedPxPerSec = 22, paused = false) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const animFrameRef = useRef<number | null>(null);
   const lastTimeRef = useRef<number | null>(null);
@@ -18,11 +18,11 @@ export const useAutoScroll = (speedPxPerSec = 22) => {
   };
 
   const toggleAutoScroll = () => {
-    setIsPlaying((prev) => !prev);
+    setIsPlaying(prev => !prev);
   };
 
   useEffect(() => {
-    if (!isPlaying) {
+    if (!isPlaying || paused) {
       if (animFrameRef.current !== null) {
         cancelAnimationFrame(animFrameRef.current);
         animFrameRef.current = null;
@@ -57,8 +57,7 @@ export const useAutoScroll = (speedPxPerSec = 22) => {
         });
 
         // Auto-stop when reaching page bottom
-        const isAtBottom =
-          window.innerHeight + Math.ceil(window.scrollY) >= document.documentElement.scrollHeight - 15;
+        const isAtBottom = window.innerHeight + Math.ceil(window.scrollY) >= document.documentElement.scrollHeight - 15;
         if (isAtBottom) {
           stopAutoScroll();
           return;
@@ -77,7 +76,7 @@ export const useAutoScroll = (speedPxPerSec = 22) => {
         animFrameRef.current = null;
       }
     };
-  }, [isPlaying, speedPxPerSec]);
+  }, [isPlaying, speedPxPerSec, paused]);
 
   return { isPlaying, toggleAutoScroll, stopAutoScroll };
 };

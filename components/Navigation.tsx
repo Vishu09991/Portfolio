@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { greetings, socialLinks } from "../portfolio";
+import { greetings, profile, socialLinks } from "../portfolio";
 import Headroom from "headroom.js";
 import {
   UncontrolledCollapse,
@@ -48,7 +48,7 @@ const Navigation = () => {
                   textTransform: "uppercase",
                 }}
               >
-                SOFTWARE DEVELOPMENT ENGINEER
+                {profile.role}
               </span>
             </div>
             <button className="navbar-toggler" aria-label="navbar_toggle" id="navbar_global">

@@ -24,7 +24,7 @@ A modern, high-performance personal developer portfolio built with **Next.js**, 
 
 ## 🧠 High-Level Overview
 
-This application serves as the interactive digital resume and portfolio for **Vishnu Hari Sahal**, a Full-Stack and Backend Engineer. 
+This application serves as the interactive digital resume and portfolio for **Vishnu Hari Sahal**, a Java Full Stack Engineer, with a focus on Java, Spring Boot, React, SQL, and REST APIs.
 
 ### Core Architecture
 - **Single-Source Data Hub (`portfolio.ts`)**: All content—including profile summary, skills categories, work experiences, project metadata, publications, and social links—is managed cleanly within a centralized TypeScript configuration file (`portfolio.ts`).
@@ -37,6 +37,7 @@ This application serves as the interactive digital resume and portfolio for **Vi
 ## ✨ Key Features
 
 - 👤 **Interactive Hero Section**: Personal greeting, title, mission statement, resume link, and social channels.
+- 🎬 **Character-Pushing Entrance**: An original articulated SVG explorer opens the portfolio in 5.6 seconds (about 4.7 seconds on mobile). Includes session playback, Skip / Escape, a Replay intro button, reduced-motion support, and scroll/focus restoration.
 - ⚡ **Technical Skills Breakdown**: Categorized showcase of languages, backend frameworks, databases, cloud tools, and core competencies with Iconify brand icons.
 - 💼 **Work Experience Timeline**: Detailed career track featuring intern and lead engineering roles (Wipro, DoItForMe, JPMorganChase job simulation) with tech tags and bulleted accomplishments.
 - 🛠️ **Featured Projects Showcase**: Project cards displaying full-stack FinTech applications (StockX), ML risk prediction systems, and enterprise Java billing suites with live site and repository links.
@@ -47,6 +48,10 @@ This application serves as the interactive digital resume and portfolio for **Vi
 ---
 
 ## 🛠️ Tech Stack
+
+The entrance lives in `components/intro/`, with styling in `styles/CinematicIntro.module.css`. A single animation clock synchronizes the panel, inverse-kinematics rig, planted feet, and hero reveal without an additional animation dependency. `motion.ts` contains the pose and timing controls. Run `node --test scripts/test-intro.cjs` to verify contact, foot planting, recoil, and finite poses. During `npm run dev`, `/?intro-preview=2.65` freezes a pose for visual review; this control is disabled in production. Scroll-driven interactions use `useIntroActive()` to wait until the entrance finishes.
+
+Java Full Stack Engineer positioning is configured in `portfolio.ts` through `profile`, `greetings`, `skillsSection`, and `seoData`. Project achievements, job titles, education, and links remain independently editable in their existing data arrays.
 
 ### Frontend & Framework
 - **Framework**: [Next.js 13](https://nextjs.org/) (Page Router, SSG)

@@ -1,8 +1,10 @@
 import React from "react";
 import { useAutoScroll } from "../hooks/useAutoScroll";
+import { useIntroActive } from "./intro/CinematicIntro";
 
 const FloatingNav = () => {
-  const { isPlaying, toggleAutoScroll } = useAutoScroll(22);
+  const introActive = useIntroActive();
+  const { isPlaying, toggleAutoScroll } = useAutoScroll(22, introActive);
 
   const scrollToSection = (id: string) => {
     if (id === "greetings") {

@@ -2,9 +2,12 @@ import React, { createContext, ReactNode, useCallback, useContext, useEffect, us
 import PushCharacter, { createRig } from "./PushCharacter";
 import { clamp, DURATION, plantFeet, poseAt, track, wallProgress } from "./motion";
 import styles from "../../styles/CinematicIntro.module.css";
+import { profile } from "../../portfolio";
 
 const SESSION_KEY = "vhs:push-intro:v1";
 const ReplayContext = createContext<() => void>(() => undefined);
+const IntroActiveContext = createContext(false);
+export const useIntroActive = () => useContext(IntroActiveContext);
 
 export function IntroReplayButton() {
   const replay = useContext(ReplayContext);
@@ -184,12 +187,12 @@ export default function CinematicIntro({ children }: { children: ReactNode }) {
       progress.style.transform = `scaleX(${t / 5.6})`;
       const label =
         t < 1.36
-          ? "01 / A little curiosity"
+          ? "A little\ncuriosity."
           : t < 2.22
-          ? "02 / A little resistance"
+          ? "A little\nresistance."
           : t < 3.72
-          ? "03 / One more push"
-          : "04 / Welcome to my world";
+          ? "One more\npush."
+          : "Welcome to\nmy world.";
       if (status.textContent !== label) status.textContent = label;
       scene.dataset.phase = t < 1.36 ? "entrance" : t < 2.22 ? "struggle" : t < 3.72 ? "push" : "reveal";
       reveals.forEach((element, index) => {
@@ -236,80 +239,79 @@ export default function CinematicIntro({ children }: { children: ReactNode }) {
   }, [state, finish]);
 
   return (
-    <ReplayContext.Provider value={replay}>
-      <div ref={content}>{children}</div>
-      {state !== "done" && (
-        <div
-          ref={overlay}
-          className={styles.intro}
-          data-intro-overlay=""
-          role="dialog"
-          aria-modal="true"
-          aria-label="A small explorer opens Vishnu’s portfolio"
-        >
-          <div className={styles.backdrop} data-backdrop="" />
-          <div className={styles.furniture} data-furniture="" aria-hidden="true">
-            <div className={styles.brand}>
-              VHS<span>PORTFOLIO / 01</span>
-            </div>
-            <div className={styles.copy}>
-              <span>EVERY GREAT THING STARTS WITH</span>
-              <p>
-                A little
-                <br />
-                <em>push.</em>
-              </p>
-            </div>
-            <div className={styles.floor} />
-            <div className={styles.particles}>
-              {Array.from({ length: 14 }, (_, i) => (
-                <i
-                  key={i}
-                  style={{
-                    left: `${(i * 31 + 7) % 96}%`,
-                    top: `${(i * 19 + 14) % 85}%`,
-                    animationDelay: `${i * -0.41}s`,
-                  }}
-                />
-              ))}
-            </div>
-            <div className={styles.caption}>
-              <span className={styles.statusDot} />
-              <span data-status="">01 / A little curiosity</span>
-            </div>
-          </div>
-          <div className={styles.assembly} data-assembly="" aria-hidden="true">
-            <div className={styles.wall}>
-              <div className={styles.wallGrain} />
-              <div className={styles.wallTop}>
-                VISHNU HARI SAHAL<span>ENGINEER · BUILDER · EXPLORER</span>
+    <IntroActiveContext.Provider value={state !== "done"}>
+      <ReplayContext.Provider value={replay}>
+        <div ref={content}>{children}</div>
+        {state !== "done" && (
+          <div
+            ref={overlay}
+            className={styles.intro}
+            data-intro-overlay=""
+            role="dialog"
+            aria-modal="true"
+            aria-label="A small explorer opens Vishnu’s portfolio"
+          >
+            <div className={styles.backdrop} data-backdrop="" />
+            <div className={styles.furniture} data-furniture="" aria-hidden="true">
+              <div className={styles.brand}>
+                VHS<span>PORTFOLIO / 01</span>
               </div>
-              <div className={styles.wallNumber}>
-                01<span>A WORLD OF POSSIBILITIES</span>
+              <div className={styles.copy}>
+                <span>EVERY GREAT THING STARTS WITH</span>
+                <p>
+                  A little
+                  <br />
+                  <em>push.</em>
+                </p>
               </div>
-              <div className={styles.wallRail}>
-                <i />
-                <i />
-                <i />
+              <div className={styles.floor} />
+              <div className={styles.particles}>
+                {Array.from({ length: 14 }, (_, i) => (
+                  <i
+                    key={i}
+                    style={{
+                      left: `${(i * 31 + 7) % 96}%`,
+                      top: `${(i * 19 + 14) % 85}%`,
+                      animationDelay: `${i * -0.41}s`,
+                    }}
+                  />
+                ))}
               </div>
-              <div className={styles.seam} data-seam="" />
             </div>
-            <div className={styles.character} data-character="">
-              <PushCharacter ref={character} />
+            <div className={styles.assembly} data-assembly="" aria-hidden="true">
+              <div className={styles.wall}>
+                <div className={styles.wallGrain} />
+                <div className={styles.wallTop}>
+                  VISHNU HARI SAHAL<span>{profile.role.toUpperCase()}</span>
+                </div>
+                <div className={styles.wallStory}>
+                  <p data-status="">{"A little\ncuriosity."}</p>
+                  <span>A WORLD OF POSSIBILITIES</span>
+                </div>
+                <div className={styles.wallRail}>
+                  <i />
+                  <i />
+                  <i />
+                </div>
+                <div className={styles.seam} data-seam="" />
+              </div>
+              <div className={styles.character} data-character="">
+                <PushCharacter ref={character} />
+              </div>
+              <div className={styles.burst} data-burst="" />
             </div>
-            <div className={styles.burst} data-burst="" />
+            <button ref={skip} className={styles.skip} onClick={finish} type="button">
+              Skip intro <span aria-hidden="true">↗</span>
+            </button>
+            <div className={styles.progress} aria-hidden="true">
+              <span data-progress="" />
+            </div>
+            <noscript>
+              <style>{"[data-intro-overlay] { display: none !important; }"}</style>
+            </noscript>
           </div>
-          <button ref={skip} className={styles.skip} onClick={finish} type="button">
-            Skip intro <span aria-hidden="true">↗</span>
-          </button>
-          <div className={styles.progress} aria-hidden="true">
-            <span data-progress="" />
-          </div>
-          <noscript>
-            <style>{"[data-intro-overlay] { display: none !important; }"}</style>
-          </noscript>
-        </div>
-      )}
-    </ReplayContext.Provider>
+        )}
+      </ReplayContext.Provider>
+    </IntroActiveContext.Provider>
   );
 }
